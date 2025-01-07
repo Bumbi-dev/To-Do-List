@@ -6,8 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TO DO LIST</title>
   </head>
-  <body>
-    <div id="app"></div>
+  <body class="bg-slate-900">
+    <div id="topbar" class="w-full text-center text-2xl font-bold py-4 border-b-2 border-sky shadow-blue-500 shadow-2xl text-slate-100">
+      To Do List
+    </div>
+    
+    <div id="task-list" class="pt-32 pl-60 pr-20 space-y-6">
+      <div class="p-4 font-bold py-4 border-2 rounded-lg border-blue-800 text-blue-600">
+          Task 1
+      </div>
+      <div class="p-4 font-bold py-4 border-2 rounded-lg border-blue-800 text-blue-600">
+        Task 2
+      </div>
+    </div>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
