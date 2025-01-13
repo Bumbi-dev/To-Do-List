@@ -3,6 +3,7 @@ package com.bumbi.to_do_list.service;
 import com.bumbi.to_do_list.model.Task;
 import com.bumbi.to_do_list.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,9 @@ import java.util.List;
 public class TaskService {
     @Autowired
     private TaskRepository repo;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     public List <Task> getAllTasks() {
         return repo.findAll();
@@ -36,5 +40,7 @@ public class TaskService {
 
     public void nukeTasks() {
         repo.deleteAll();
+        String sql = "ALTER TABLE task AUTO_INCREMENT = 1";
+        jdbcTemplate.execute(sql);
     }
 }
