@@ -15,7 +15,8 @@ function createTaskFromObject(object: Object) {
     child.querySelector(".desc")!.textContent = object.desc
     child.querySelector(".creation-date")!.textContent = object.creationDate
     child.querySelector(".due-date")!.textContent = object.dueDate
-    
+    child.setAttribute("style", object.color);
+
 
     list.appendChild(child)
 }
