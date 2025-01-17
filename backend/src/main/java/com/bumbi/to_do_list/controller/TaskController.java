@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class TaskController {
     @Autowired
@@ -30,5 +31,10 @@ public class TaskController {
     @DeleteMapping("/tasks")
     public void nukeTasks() {
         service.nukeTasks();
+    }
+
+    @DeleteMapping("/tasks/{id}")
+    public void nukeTasks(@PathVariable int id) {
+        service.deleteTaskById(id);
     }
 }

@@ -2,6 +2,8 @@ package com.bumbi.to_do_list.model;
 
 import jakarta.persistence.*;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 @Entity
@@ -18,12 +20,10 @@ public class Task {
 
     @PrePersist
     private void onCreate() {
-        if (this.creationDate == null) {
-            this.creationDate = new Date();
-        }
-        if (this.dueDate == null) {
-            this.dueDate = new Date(this.creationDate.getTime() + 24 * 60 * 60 * 1000);
-        }
+            creationDate = formatDate(new Date());
+
+            dueDate = new Date(creationDate.getTime() + 24 * 60 * 60 * 1000);
+            dueDate = formatDate(dueDate);
     }
 
     public Task(String desc, int color) {
@@ -49,6 +49,14 @@ public class Task {
     }
     public Date getDueDate() {
         return dueDate;
+    }
+
+    private Date formatDate(Date date) {
+        ZonedDateTime zoneDate = ZonedDateTime.ofInstant(date.toInstant(), ZoneId.of("Europe/Bucharest"));//TODO fix timezone
+
+        zoneDate = zoneDate.withMinute(0).withSecond(0).withNano(0);
+
+        return Date.from(zoneDate.toInstant());
     }
 
     public Task() {}

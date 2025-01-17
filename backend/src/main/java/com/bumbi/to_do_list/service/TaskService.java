@@ -24,7 +24,7 @@ public class TaskService {
         Task closestTask = repo.findAll().getFirst();
 
         for(Task task : repo.findAll())
-            if(task.timeToDueDate() < closestTask.timeToDueDate())
+            if(task.getDueDate().getTime() < closestTask.getDueDate().getTime())
                 closestTask = task;
 
         return closestTask;
