@@ -1,4 +1,5 @@
 import './style.css'
+import { Task } from './task.ts'
 
 const list = document.getElementById("task-list") as HTMLElement
 const child = document.getElementById("task-example")!.cloneNode(true) as HTMLElement
@@ -8,15 +9,14 @@ const resp = await req.json()
 
 createTaskFromObject(resp)
 
-function createTaskFromObject(object: Object) {
+function createTaskFromObject(taskObject: any) {
+    const task = new Task(taskObject)
     child.classList.remove('hidden')
-    console.log(object)
     
-    child.querySelector(".desc")!.textContent = object.desc
-    child.querySelector(".creation-date")!.textContent = object.creationDate
-    child.querySelector(".due-date")!.textContent = object.dueDate
-    child.setAttribute("style", object.color);
-
+    child.querySelector(".desc")!.textContent = task.desc
+    child.querySelector(".creation-date")!.textContent = task.getCreationDate()
+    child.querySelector(".due-date")!.textContent = task.getDueDate()
+    child.setAttribute("style", task.color);
 
     list.appendChild(child)
 }
