@@ -7,6 +7,6 @@
     background-image: linear-gradient(to right, transparent 0%, #3b86f6 10%, #3b86f6 90%, transparent 100%);
     background-position: bottom;
     background-repeat: no-repeat;
-    background-size: 100% 2px; /* Border thickness */
+    background-size: 100% 2px;
   }
   
