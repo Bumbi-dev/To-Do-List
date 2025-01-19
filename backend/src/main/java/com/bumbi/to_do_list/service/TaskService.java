@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -32,6 +33,19 @@ public class TaskService {
 
     public void addTask(Task task) {
         repo.save(task);
+    }
+
+    public void updateTask(Task newTask) {
+        if(repo.findById(newTask.getId()).isEmpty())
+            return;
+
+        Task oldTask = repo.findById(newTask.getId()).get();
+        oldTask.setDesc(newTask.getDesc());
+        oldTask.setColor(newTask.getColor());
+        oldTask.setDueDate(newTask.getDueDate());
+        oldTask.setCreationDate(newTask.getCreationDate());
+
+        repo.save(oldTask);
     }
 
     public void deleteTaskById(int id) {

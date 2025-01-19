@@ -10,38 +10,34 @@ import java.util.Date;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "description")
     private String desc;
-    private Integer color;
+    private String color;
     private Date creationDate;
     private Date dueDate;
 
     @PrePersist
     private void onCreate() {
-            creationDate = formatDate(new Date());
+        creationDate = formatDate(new Date());
 
-            dueDate = new Date(creationDate.getTime() + 24 * 60 * 60 * 1000);
-            dueDate = formatDate(dueDate);
+        dueDate = new Date(creationDate.getTime() + 24 * 60 * 60 * 1000);
+        dueDate = formatDate(dueDate);
     }
 
-    public Task(String desc, int color) {
+    public Task(String desc, String color) {
         this.desc = desc;
         this.color = color;
     }
 
-    public long timeToDueDate() {
-        return dueDate.getTime() - new Date().getTime();
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
     public String getDesc() {
         return desc;
     }
-    public int getColor() {
+    public String getColor() {
         return color;
     }
     public Date getCreationDate() {
@@ -49,6 +45,19 @@ public class Task {
     }
     public Date getDueDate() {
         return dueDate;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+    public void setColor(String color) {
+        this.color = color;
+    }
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+    public void setDueDate(Date dueDate) {
+        this.dueDate = dueDate;
     }
 
     private Date formatDate(Date date) {

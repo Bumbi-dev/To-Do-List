@@ -18,19 +18,24 @@ public class TaskController {
         return service.getAllTasks();
     }
 
-    @GetMapping("/closestTask")
-    public Task getClosestTaskToDueDate() {
-        return service.getClosestTaskToDueDate();
-    }
-
     @PostMapping("/tasks")
     public void addTask(@RequestBody Task task) {
         service.addTask(task);
     }
 
+    @PutMapping("/tasks")
+    public void updateTask(@RequestBody Task task) {
+        service.updateTask(task);
+    }
+
     @DeleteMapping("/tasks")
     public void nukeTasks() {
         service.nukeTasks();
+    }
+
+    @GetMapping("/closestTask")
+    public Task getClosestTaskToDueDate() {
+        return service.getClosestTaskToDueDate();
     }
 
     @DeleteMapping("/tasks/{id}")
