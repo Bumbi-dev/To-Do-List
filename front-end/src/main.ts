@@ -22,7 +22,7 @@ function createTaskFromObject(taskObject: any): boolean {
     
     child.querySelector(".desc")!.textContent = task.desc;
     child.querySelector(".creation-date")!.textContent = task.getCreationDate();
-    child.querySelector(".due-date")!.textContent = task.dueDate + " ______ " + task.getTimeLeft();
+    child.querySelector(".due-date")!.textContent = task.getTimeLeft();
     child.setAttribute("style", `color: ${task.color}`);
 
     list.appendChild(child);
