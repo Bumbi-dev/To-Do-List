@@ -3,9 +3,9 @@ import { Task } from './task.ts'
 
 const list = document.getElementById("task-list") as HTMLElement
 
-await initTasks()
+await loadTasks()
 
-async function initTasks() {
+async function loadTasks() {
     const req = await fetch("http://localhost:8080/tasks")!
     const resp = await req.json()
 
@@ -22,8 +22,8 @@ function createTaskFromObject(taskObject: any): boolean {
     
     child.querySelector(".desc")!.textContent = task.desc;
     child.querySelector(".creation-date")!.textContent = task.getCreationDate();
-    child.querySelector(".due-date")!.textContent = task.getDueDate();
-    child.setAttribute("style", `color: ${task.color};`);
+    child.querySelector(".due-date")!.textContent = task.dueDate + " ______ " + task.getTimeLeft();
+    child.setAttribute("style", `color: ${task.color}`);
 
     list.appendChild(child);
     return true;
