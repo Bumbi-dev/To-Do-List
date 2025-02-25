@@ -19,7 +19,8 @@ function createTaskFromObject(taskObject: any): boolean {
     const task = new Task(taskObject);
     
     child.classList.remove('hidden');
-    
+    child.removeAttribute('id');
+
     child.querySelector(".desc")!.textContent = task.desc;
     child.querySelector(".creation-date")!.textContent = task.getCreationDate();
     child.querySelector(".due-date")!.textContent = task.getTimeLeft();
